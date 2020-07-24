@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './importIcons'
+import './style.scss'
 
 interface IconProps {
   name: string
@@ -7,14 +8,9 @@ interface IconProps {
 // 写成箭头函数方便设置类型
 const Icon: React.FunctionComponent<IconProps> = (props) => {
   return (
-    <span>
-      <svg>
+      <svg className='pui-icon'>
         <use xlinkHref={`#${props.name}`}/>
       </svg>
-       <svg>
-        <use xlinkHref='#panda'/>
-      </svg>
-    </span>
   );
 };
 
