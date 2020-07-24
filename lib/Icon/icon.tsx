@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './importIcons'
-import './style.scss'
-import classes from './helper/classes'
+import '../style.scss'
+import classes from '../helper/classes'
 
 interface IconProps extends React.SVGAttributes<SVGElement>{
   name: string,
