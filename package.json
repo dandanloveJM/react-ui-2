@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/dandanloveJM/react-ui-2/issues"
   },
-  "homepage": "https://github.com/dandanloveJM/react-ui-2#readme"
+  "homepage": "https://github.com/dandanloveJM/react-ui-2#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "html-webpack-plugin": "^4.3.0",
+    "typescript": "^3.9.7",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
 }
