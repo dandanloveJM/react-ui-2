@@ -1,7 +1,12 @@
-import * as React from 'react';
-import Button from './button';
+import React from 'react';
+import Icon from './icon';
+import * as ReactDOM from "react-dom";
 
-const a = 1
-console.log('hi')
+ReactDOM.render(<div>
+  <Icon name="wechat"/>
+  </div>
 
-export {Button, a};
+  , document.body)
+
+
+export {Icon};
