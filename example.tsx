@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
-import IconExample from './lib/icon/icon.example';
-import LayoutExample from './lib/layout/layout.example';
+import IconExample from './lib/Icon/icon.example';
+import LayoutExample from './lib/Layout/layout.example';
 
 
 ReactDOM.render(
@@ -10,7 +10,7 @@ ReactDOM.render(
     <div>
       <header>
         <div className="logo">
-          FUI
+          PandaUI
         </div>
 
       </header>
@@ -19,22 +19,16 @@ ReactDOM.render(
           <h2>组件</h2>
           <ul>
             <li>
-              <Link to="/icon">Icon</Link>
+              <Link to="/Icon">Icon</Link>
             </li>
             <li>
-              <Link to="/button">Button</Link>
-            </li>
-            <li>
-              <Link to="/dialog">对话框</Link>
-            </li>
-            <li>
-              <Link to="/layout">布局</Link>
+              <Link to="/Layout">布局</Link>
             </li>
           </ul>
         </aside>
         <main>
-          <Route path="/icon" component={IconExample}/>
-          <Route path="/layout" component={LayoutExample}/>
+          <Route path="/Icon" component={IconExample}/>
+          <Route path="/Layout" component={LayoutExample}/>
         </main>
       </div>
     </div>
