@@ -18,3 +18,7 @@
 .z + .y, .y + .z, .z + .pui-layout {
   margin-left: 8px;
 }
+
+.example .pui-layout.pui-layout-hasAside {
+  flex-direction: row;
+}

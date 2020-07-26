@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Layout from './layout';
+import {Layout} from './layout';
 import Header from './header';
 import Footer from './footer';
 import Content from './content';
@@ -8,7 +8,7 @@ import './layout.example.scss'
 
 export default function () {
   return (
-    <div>
+    <div className="example">
       <div>
         <h1>第一个例子</h1>
         <Layout style={{height: 500, width: 500}} className="hi">
