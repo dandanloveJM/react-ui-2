@@ -1,5 +1,4 @@
 .pui-layout {
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
 
@@ -11,4 +10,14 @@
     flex-grow: 1;
     flex-direction: row;
   }
+
+  &-hasAside{
+    flex-direction: row;
+
+   .pui-layout{
+      flex-direction: column;
+    }
+  }
+
+
 }
