@@ -1,37 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Route, Link} from 'react-router-dom';
+import {HashRouter as Router, Route, NavLink} from 'react-router-dom';
 import IconExample from './lib/icon/icon.example';
 import LayoutExample from './lib/layout/layout.example';
-import './lib/layout/layout.example.scss'
+import {Layout, Aside, Header, Content, Footer} from './lib/layout/layout';
+import './example.scss';
+import Icon from './lib/icon/icon';
+
 
 
 ReactDOM.render(
   <Router>
-    <div>
-      <header>
+    <Layout className="site-page">
+      <Header className="site-header">
         <div className="logo">
-          PandaUI
+         <Icon name="pandalogo"/>
+          <span> Panda UI </span>
         </div>
+      </Header>
 
-      </header>
-      <div>
-        <aside>
+      <Layout>
+        <Aside className="site-aside">
           <h2>组件</h2>
           <ul>
             <li>
-              <Link to="/Icon">Icon</Link>
+              <NavLink to="/icon">Icon</NavLink>
             </li>
             <li>
-              <Link to="/Layout">布局</Link>
+              <NavLink to="/layout">布局</NavLink>
             </li>
           </ul>
-        </aside>
-        <main>
-          <Route path="/Icon" component={IconExample}/>
-          <Route path="/Layout" component={LayoutExample}/>
-        </main>
-      </div>
-    </div>
+        </Aside>
+        <Content className='site-main'>
+          <Route path="/icon" component={IconExample}/>
+          <Route path="/layout" component={LayoutExample}/>
+        </Content>
+      </Layout>
+      <Footer className="site-footer">
+        &copy; 熊猫UI
+      </Footer>
+
+
+    </Layout>
   </Router>
   , document.querySelector('#root'));
