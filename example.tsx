@@ -6,6 +6,7 @@ import './example.scss';
 import Icon from './lib/icon/icon';
 import IconDemo from './lib/icon/icon.demo';
 import LayoutDemo from './lib/layout/layout.demo';
+import FormExample from './lib/form/form.example';
 
 
 
@@ -29,11 +30,15 @@ ReactDOM.render(
             <li>
               <NavLink to="/layout">布局</NavLink>
             </li>
+            <li>
+              <NavLink to="/form">表单</NavLink>
+            </li>
           </ul>
         </Aside>
         <Content className='site-main'>
           <Route path="/icon" component={IconDemo}/>
           <Route path="/layout" component={LayoutDemo}/>
+          <Route path="/form" component={FormExample}/>
         </Content>
       </Layout>
       <Footer className="site-footer">
