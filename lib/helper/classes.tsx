@@ -14,24 +14,16 @@ interface ClassToggles {
 
 function scopedClassMaker(prefix: string) {
   return function (name: string | ClassToggles, options?: Options) {
-    const namesObject = (typeof name === 'string' || name === undefined) ?
-      {[name]: name} :
-      name;
-
-    const scoped = Object
-      .entries(namesObject)
-      .filter(kv => kv[1] !== false)
-      .map(kv => kv[0])
-      .map(name => [prefix, name]
+    const namesObject = (name instanceof Object) ? name : {[name]: name};
+    return Object
+      .entries(namesObject) // 拿到[key, value]数组
+      .filter(kv => kv[1] !== false) // 用value来过滤掉false的值
+      .map(kv => kv[0]) // 只需要留下第一个值
+      .map(name => [prefix, name] // 和前缀组成数组
         .filter(Boolean)
-        .join('-'))
+        .join('-')) // 用-连接拼起来
+      .concat(options && options.extra || [])
       .join(' ');
-
-    if (options && options.extra) {
-      return [scoped, options && options.extra].filter(Boolean).join(' ');
-    } else {
-      return scoped;
-    }
   };
 
 }
