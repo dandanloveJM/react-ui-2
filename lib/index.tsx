@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from './Icon/icon';
+import Icon from './icon/icon';
 import * as ReactDOM from 'react-dom';
 
 
