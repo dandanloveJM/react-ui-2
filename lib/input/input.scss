@@ -1,14 +1,29 @@
 @import "../helper";
+
+.input-icon-wrapper {
+  position: relative;
+
+  > svg.pui-icon {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+  }
+}
+
 .pui-input {
+  min-width: 250px;
   border: 1px solid #ddd;
   line-height: 22px;
   padding: 4px 8px;
   border-radius: 4px;
   box-shadow: 0 0 0 2px fade_out($main-color, 1);
   transition: box-shadow 250ms;
+
   &:focus {
     outline: none;
     border-color: $main-color;
     box-shadow: 0 0 0 2px fade_out($main-color, 0.5);
   }
+
+
 }

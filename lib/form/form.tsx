@@ -13,8 +13,9 @@ interface Props {
   buttons: ReactFragment;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: (value: FormValue) => void;
-  errors: { [K: string]: string[] }
+  errors?: { [K: string]: string[] }
   errorsDisplayMode?: 'first' | 'all';
+  showpassword: (isShow: boolean) => string
 }
 
 
@@ -37,7 +38,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
         <tbody>
         {props.fields.map(f =>
 
-          <tr key={f.name} className={classes('pui-form-tr')} >
+          <tr key={f.name} className={classes('pui-form-tr')}>
             <td className="pui-form-td">
               <span className="pui-form-label">{f.label}</span>
             </td>
@@ -45,10 +46,18 @@ const Form: React.FunctionComponent<Props> = (props) => {
               <Input className="pui-form-input"
                      type={f.input.type}
                      value={formData[f.name]}
+                     inputname={f.label}
+                     showpassword={(isShowPassword: boolean) =>{
+                        props.showpassword(isShowPassword)
+                       return 'xxx'
+                     }
+
+                     }
                      onChange={(e) => onInputChange(f.name, e.target.value)}
               />
               <div className="pui-form-error">
                 {
+                  props.errors &&
                   props.errors[f.name] ?
                     (props.errorsDisplayMode === 'first' ?
                       props.errors[f.name][0] : props.errors[f.name].join())

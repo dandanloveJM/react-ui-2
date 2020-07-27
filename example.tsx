@@ -6,7 +6,7 @@ import './example.scss';
 import Icon from './lib/icon/icon';
 import IconDemo from './lib/icon/icon.demo';
 import LayoutDemo from './lib/layout/layout.demo';
-import FormExample from './lib/form/form.example';
+import FormDemo from './lib/form/form.demo';
 
 
 
@@ -38,7 +38,7 @@ ReactDOM.render(
         <Content className='site-main'>
           <Route path="/icon" component={IconDemo}/>
           <Route path="/layout" component={LayoutDemo}/>
-          <Route path="/form" component={FormExample}/>
+          <Route path="/form" component={FormDemo}/>
         </Content>
       </Layout>
       <Footer className="site-footer">
