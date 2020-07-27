@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {ReactFragment} from 'react';
 import Input from '../input/input';
+import classes from '../helper/classes';
 
 export interface FormValue {
   [K: string]: any
@@ -12,6 +13,8 @@ interface Props {
   buttons: ReactFragment;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   onChange: (value: FormValue) => void;
+  errors: { [K: string]: string[] }
+  errorsDisplayMode?: 'first' | 'all';
 }
 
 
@@ -19,7 +22,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
   const formData = props.value;
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log('form submit')
+    console.log('form submit');
     props.onSubmit(e);
   };
 
@@ -30,11 +33,11 @@ const Form: React.FunctionComponent<Props> = (props) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <table>
+      <table className="pui-form-table">
         <tbody>
         {props.fields.map(f =>
 
-          <tr key={f.name}>
+          <tr key={f.name} className={classes('pui-form-tr')} >
             <td className="pui-form-td">
               <span className="pui-form-label">{f.label}</span>
             </td>
@@ -44,6 +47,14 @@ const Form: React.FunctionComponent<Props> = (props) => {
                      value={formData[f.name]}
                      onChange={(e) => onInputChange(f.name, e.target.value)}
               />
+              <div className="pui-form-error">
+                {
+                  props.errors[f.name] ?
+                    (props.errorsDisplayMode === 'first' ?
+                      props.errors[f.name][0] : props.errors[f.name].join())
+                    : <span>&nbsp;</span>
+                }
+              </div>
             </td>
           </tr>
         )}
@@ -58,6 +69,10 @@ const Form: React.FunctionComponent<Props> = (props) => {
       </table>
     </form>
   );
+};
+
+Form.defaultProps = {
+  errorsDisplayMode: 'first'
 };
 
 export default Form;
