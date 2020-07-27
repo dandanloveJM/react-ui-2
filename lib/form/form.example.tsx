@@ -6,10 +6,39 @@ import './form.scss';
 import '../button/button.scss';
 import Validator from './validator';
 
+const usernames = ['lisa', 'maria', 'frank', 'alice', 'bob'];
+const checkUserName = (username: string, succeed: () => void, fail: () => void) => {
+  setTimeout(() => {
+    console.log('我现在知道用户名是否存在');
+    if (usernames.indexOf(username) >= 0) {
+      fail();
+    } else {
+      succeed();
+    }
+  }, 3000);
+};
+
+interface sampleData {
+  [index: string]:string
+}
+const data:sampleData = {'lisa': 'lisa123', 'maria': 'maria123'};
+
+const checkPassword = (password: string, username: string, succeed: () => void, fail: () => void) => {
+  setTimeout(() => {
+    console.log('我现在比较用户名和密码');
+
+    if (data[username] !== password) {
+      fail();
+    } else {
+      succeed();
+    }
+  }, 3000);
+};
+
 
 const FormExample: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<FormValue>({
-    username: 'frank',
+    username: 'lisa',
     password: ''
   });
 
@@ -19,28 +48,49 @@ const FormExample: React.FunctionComponent = () => {
   ]);
 
   const [errors, setErrors] = useState({});
+  const validator1 = (username: string) => {
+    return new Promise<string>((resolve, reject) => {
+      checkUserName(username, resolve, () => reject('用户名已存在'));
+    });
+  };
 
-
+  const validator2 = (password: string, username: string) => {
+    return new Promise<string>((resolve, reject) => {
+      checkPassword(password, username, resolve, () => reject('密码输入错误'));
+    });
+  };
+  const [isLoading, setIsLoading] = useState('')
   const onSubmit = (e: any) => {
+    setIsLoading('loading')
     const rules = [
       {key: 'username', required: true},
-      {key: 'username', minLength: 8, maxLength: 16},
-      {key: 'username', pattern: /^[A-Z][a-z][0-9]+$/},
-      {key: 'password', required: true}
-    ];
-    const errors = Validator(formData, rules);
-    setErrors(errors)
+      {key: 'username', minLength: 2, maxLength: 16},
+      {key: 'username', validator1},
+      {key: 'username', pattern: /^[A-Za-z0-9]+$/},
+      {key: 'password', required: true},
+      {key: 'password', validator2},
 
-    console.log(formData);
-    console.log('errors');
-    console.log(errors);
+    ];
+
+
+
+    Validator(formData, rules, (errors) => {
+
+      setErrors(errors);
+      setIsLoading('')
+      console.log(formData);
+      console.log('errors');
+      console.log(errors);
+      console.log(isLoading)
+    });
+
 
   };
   return (
     <Form value={formData} fields={fields}
           buttons={
             <Fragment>
-              <Button type="submit" level="important">提交</Button>
+              <Button type="submit" level="important" loading={isLoading}>提交</Button>
               <Button>返回</Button>
             </Fragment>
           }

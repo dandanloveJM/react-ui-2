@@ -10,6 +10,10 @@
     padding-top: 0;
     padding-bottom: 8px;
   }
+  &-button-td {
+    display: inline-flex;
+    align-items: center;
+  }
   &-tr:last-child &-td {
     padding-bottom: 0;
   }

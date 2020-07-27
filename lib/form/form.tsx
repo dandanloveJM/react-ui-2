@@ -61,7 +61,7 @@ const Form: React.FunctionComponent<Props> = (props) => {
 
         <tr className="pui-form-tr">
           <td className="pui-form-td"/>
-          <td className="pui-form-td">
+          <td className="pui-form-td pui-form-button-td">
             {props.buttons}
           </td>
         </tr>
