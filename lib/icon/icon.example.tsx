@@ -5,7 +5,8 @@ const IconExample: React.FunctionComponent = () => {
   return (
     <div>
       <Icon name="panda"/>
-      <Icon name="wechat"/>
+      <Icon name="tiktok"/>
+      <Icon name="service"/>
     </div>
   );
 };

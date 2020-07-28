@@ -22,6 +22,7 @@ const FormDemo2: React.FunctionComponent = () => {
       {key: 'username', minLength: 2, maxLength: 16},
       {key: 'username', pattern: /^[A-Za-z0-9]+$/},
       {key: 'password', required: true},
+      {key: 'password', minLength: 8, maxLength: 20},
     ];
 
 

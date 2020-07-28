@@ -16,7 +16,7 @@ ReactDOM.render(
       <Header className="site-header">
         <div className="logo">
          <Icon name="pandalogo"/>
-          <span> Panda UI </span>
+          <span> 熊猫UI </span>
         </div>
       </Header>
 
@@ -28,11 +28,12 @@ ReactDOM.render(
               <NavLink to="/icon">Icon</NavLink>
             </li>
             <li>
-              <NavLink to="/layout">布局</NavLink>
-            </li>
-            <li>
               <NavLink to="/form">表单</NavLink>
             </li>
+            <li>
+              <NavLink to="/layout">布局</NavLink>
+            </li>
+
           </ul>
         </Aside>
         <Content className='site-main'>
