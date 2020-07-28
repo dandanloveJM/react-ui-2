@@ -26,8 +26,6 @@ const data: sampleData = {'lisa': 'lisa123', 'maria': 'maria123'};
 
 const checkPassword = (password: string, username: string, succeed: () => void, fail: () => void) => {
   setTimeout(() => {
-    console.log('我现在比较用户名和密码');
-
     if (data[username] !== password) {
       fail();
     } else {

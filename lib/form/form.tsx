@@ -23,7 +23,6 @@ const Form: React.FunctionComponent<Props> = (props) => {
   const formData = props.value;
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log('form submit');
     props.onSubmit(e);
   };
 

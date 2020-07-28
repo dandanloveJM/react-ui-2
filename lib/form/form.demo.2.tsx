@@ -6,8 +6,8 @@ import Button from '../button/button';
 
 const FormDemo2: React.FunctionComponent = () => {
   const [formData, setFormData] = useState<FormValue>({
-    username: 'lisa',
-    password: ''
+    username: 'lisa;;///',
+    password: '123'
   });
 
   const [fields, setFields] = useState([
@@ -19,10 +19,10 @@ const FormDemo2: React.FunctionComponent = () => {
 
     const rules = [
       {key: 'username', required: true},
-      {key: 'username', minLength: 2, maxLength: 16},
+      {key: 'username', minLength: 6, maxLength: 16},
       {key: 'username', pattern: /^[A-Za-z0-9]+$/},
       {key: 'password', required: true},
-      {key: 'password', minLength: 8, maxLength: 20},
+      {key: 'password', minLength: 6, maxLength: 16},
     ];
 
 

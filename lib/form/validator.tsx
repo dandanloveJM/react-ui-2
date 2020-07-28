@@ -59,17 +59,17 @@ const Validator = (formValue: FormValue, rules: FormRules, callback: (errors: an
     }
 
     if (rule.required && isEmpty(value)) {
-      addError(rule.key, '必填');
+      addError(rule.key, '这项必填噢！');
     }
     if (rule.minLength && !isEmpty(value) && value!.length < rule.minLength) {
-      addError(rule.key, '太短');
+      addError(rule.key, '填写太短啦~');
     }
     if (rule.maxLength && !isEmpty(value) && value!.length > rule.maxLength) {
-      addError(rule.key, '太长');
+      addError(rule.key, '填写太长啦~');
     }
     if (rule.pattern) {
       if (!(rule.pattern.test(value))) {
-        addError(rule.key, '格式不正确');
+        addError(rule.key, '格式不正确，只能是数字和字母~');
       }
     }
 

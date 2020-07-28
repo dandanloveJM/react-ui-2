@@ -6,7 +6,6 @@ import Button from '../button/button';
 const usernames = ['lisa', 'maria', 'frank', 'alice', 'bob'];
 const checkUserName = (username: string, succeed: () => void, fail: () => void) => {
   setTimeout(() => {
-    console.log('我现在知道用户名是否存在');
     if (usernames.indexOf(username) >= 0) {
       fail();
     } else {
@@ -20,9 +19,9 @@ interface sampleData {
 }
 const data:sampleData = {'lisa': 'lisa123', 'maria': 'maria123'};
 
-const checkPassword = (password: string, username: string, succeed: () => void, fail: () => void) => {
+const checkPassword = (password: string, username: string,
+                       succeed: () => void, fail: () => void) => {
   setTimeout(() => {
-    console.log('我现在比较用户名和密码');
 
     if (data[username] !== password) {
       fail();
@@ -48,13 +47,15 @@ const FormDemo3: React.FunctionComponent = () => {
   const [errors, setErrors] = useState({});
   const validator1 = (username: string) => {
     return new Promise<string>((resolve, reject) => {
-      checkUserName(username, resolve, () => reject('用户名已存在'));
+      checkUserName(username, resolve,
+        () => reject('用户名已存在'));
     });
   };
 
   const validator2 = (password: string, username: string) => {
     return new Promise<string>((resolve, reject) => {
-      checkPassword(password, username, resolve, () => reject('密码输入错误'));
+      checkPassword(password, username, resolve,
+        () => reject('密码输入错误'));
     });
   };
   const [isLoading, setIsLoading] = useState('')
@@ -94,7 +95,8 @@ const FormDemo3: React.FunctionComponent = () => {
     <Form value={formData} fields={fields}
           buttons={
             <Fragment>
-              <Button type="submit" level="important" loading={isLoading}>check</Button>
+              <Button type="submit" level="important"
+                      loading={isLoading}>check</Button>
             </Fragment>
           }
           errors={errors}

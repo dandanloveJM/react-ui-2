@@ -5,7 +5,8 @@ import Validator from './validator';
 import Button from '../button/button';
 
 const usernames = ['lisa', 'maria', 'frank', 'alice', 'bob'];
-const checkUserName = (username: string, succeed: () => void, fail: () => void) => {
+const checkUserName = (username: string,
+                       succeed: () => void, fail: () => void) => {
   setTimeout(() => {
     if (usernames.indexOf(username) >= 0) {
       fail();
@@ -16,11 +17,13 @@ const checkUserName = (username: string, succeed: () => void, fail: () => void) 
 };
 
 interface sampleData {
-  [index: string]:string
+  [index: string]: string
 }
-const data:sampleData = {'lisa': 'lisa123', 'maria': 'maria123'};
 
-const checkPassword = (password: string, username: string, succeed: () => void, fail: () => void) => {
+const data: sampleData = {'lisa': 'lisa123', 'maria': 'maria123'};
+
+const checkPassword = (password: string, username: string,
+                       succeed: () => void, fail: () => void) => {
   setTimeout(() => {
     if (data[username] !== password) {
       fail();
@@ -29,7 +32,6 @@ const checkPassword = (password: string, username: string, succeed: () => void, 
     }
   }, 3000);
 };
-
 
 
 const FormDemo4: React.FunctionComponent = () => {
@@ -46,36 +48,38 @@ const FormDemo4: React.FunctionComponent = () => {
   const [errors, setErrors] = useState({});
   const validator1 = (username: string) => {
     return new Promise<string>((resolve, reject) => {
-      checkUserName(username, resolve, () => reject('用户名已存在'));
+      checkUserName(username, resolve,
+        () => reject('用户名已存在'));
     });
   };
 
   const validator2 = (password: string, username: string) => {
     return new Promise<string>((resolve, reject) => {
-      checkPassword(password, username, resolve, () => reject('密码输入错误'));
+      checkPassword(password, username, resolve,
+        () => reject('密码输入错误'));
     });
   };
 
-  const [isLoading, setIsLoading] = useState('')
+  const [isLoading, setIsLoading] = useState('');
   const onSubmit = () => {
-    setIsLoading('loading')
+    setIsLoading('loading');
     const rules = [
       {key: 'username', required: true},
-      {key: 'username', minLength: 2, maxLength: 16},
+      {key: 'username', minLength: 6, maxLength: 16},
       {key: 'username', validator1},
       {key: 'username', pattern: /^[A-Za-z0-9]+$/},
+      {key: 'password', minLength: 6, maxLength: 16},
       {key: 'password', required: true},
       {key: 'password', validator2},
     ];
 
     Validator(formData, rules, (errors) => {
       setErrors(errors);
-      setIsLoading('')
+      setIsLoading('');
     });
 
 
   };
-
 
 
   const changeInputType = (isShow: boolean) => {
@@ -99,7 +103,8 @@ const FormDemo4: React.FunctionComponent = () => {
     <Form value={formData} fields={fields}
           buttons={
             <Fragment>
-              <Button type="submit" level="important" loading={isLoading}>check</Button>
+              <Button type="submit" level="important"
+                      loading={isLoading}>check</Button>
             </Fragment>
           }
           errors={errors}
